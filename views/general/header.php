@@ -6,6 +6,10 @@
     }
 </script>
 
+<?php if (isset($_SESSION['usuario'])) {
+    require_once "models/client.php";
+    $informacion = (new Client)->getUserInfo($_SESSION["usuario"]);
+} ?>
 
 <header>
     <div class="header-container">
@@ -18,9 +22,12 @@
         </div>
         <?php if (isset($_SESSION['usuario'])) { ?>
             <div id="log-info" class="user-icon">
-                <p><?php require_once "models/client.php";
-                    echo ((new Client)->getNombre($_SESSION['usuario'])["nombreC"]) ?></p>
-                <img class="menu-icon" src="../../assets/svg/login-user.svg" alt="">
+                <p><?php echo ($informacion["nombre"] . " " . $informacion["apellido"]) ?></p>
+                <img class="menu-icon" src="../../<?php if (isset($informacion["foto_perfil"]) && $informacion["foto_perfil"] != "" && $informacion["foto_perfil"] != "NULL") {
+                                                        echo ($informacion["foto_perfil"]);
+                                                    } else {
+                                                        echo ("assets/svg/login-user.svg");
+                                                    } ?>" alt="">
                 <div id="optionss-user" class="user-menu hidden">
                     <ul>
                         <li class="user-menu-li">

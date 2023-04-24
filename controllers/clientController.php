@@ -116,19 +116,35 @@ class ClientController
         if (isset($_SESSION['admin'])) {
             unset($_SESSION['admin']);
         }
-        
+
         header('Location: index.php?c=client&a=loginClientScreen&t=Inicia%20sesion');
         exit();
     }
-    
+
     public function showPerfil()
     {
-        $informacion=(new Client)->getUserInfo($_SESSION["usuario"]);
+        $informacion = (new Client)->getUserInfo($_SESSION["usuario"]);
         require_once "views/client/perfil.php";
     }
-    
+
     public function showEditPerfil()
     {
+        $informacion = (new Client)->getUserInfo($_SESSION["usuario"]);
         require_once "views/client/editarPerfil.php";
+    }
+
+    public function editUser()
+    {
+        if (isset($_FILES['foto'])) {
+            $nombre_imagen = $_FILES['foto']['name'];
+            $temp_imagen = $_FILES['foto']['tmp_name'];
+            $ruta_destino = "assets/img/users/" . $nombre_imagen;
+            move_uploaded_file($temp_imagen, $ruta_destino);
+        } else {
+            $ruta_destino = "";
+        }
+        (new Client)->updateUser($_SESSION["usuario"], $ruta_destino, $_POST["nombre"], $_POST["apellidos"], $_POST["telefono"], $_POST["contrasenha"]);
+        header('Location: index.php');
+        exit();
     }
 }

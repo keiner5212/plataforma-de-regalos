@@ -69,4 +69,11 @@ class Client
         }
         return false;
     }
+
+    
+    public function updateUser($email,$foto,$nombre,$apellido,$telefono,$contrasenha)
+    {
+        $sql = "UPDATE usuarios SET contrasenha='{$contrasenha}',nombre='{$nombre}',foto_perfil='{$foto}',apellido='{$apellido}',telefono='{$telefono}' WHERE correo = '{$email} '";
+        $this->pdo->query($sql);
+    }
 }
