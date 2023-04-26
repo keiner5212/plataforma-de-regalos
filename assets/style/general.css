@@ -246,7 +246,7 @@ form {
     width: 220px;
 }
 
-.user-menu ul{
+.user-menu ul {
     margin: 3px 0px;
 }
 
@@ -316,10 +316,49 @@ form {
     font-weight: 700;
 }
 
-form label{
+form label {
     display: flex;
     text-align: center;
     justify-content: center;
     align-items: center;
     width: 130px;
+}
+
+.menu-adjust {
+    justify-content: flex-start;
+    margin: 10px;
+    padding: 10px;
+    max-height: 100%;
+    overflow: auto;
+    flex-direction: column;
+}
+
+.tools{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tools *{
+    align-items: center;
+}
+
+form input, select{
+    margin: 0px 5px;
+    border-radius: 10px;
+    background-color: #D9D9D9;
+    padding: 5px 15px;
+    outline: none;
+}
+
+.submit-buttton{
+    background-color: #819DE5;
+    color: white;
+}
+
+.circle{
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
 }

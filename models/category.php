@@ -10,4 +10,10 @@ class Category
         $this->pdo = (new Database)->connect();
     }
 
+    public function getCategories()
+    {
+        $sql = "SELECT * FROM 	categorias";
+        $aux = $this->pdo->query($sql);
+        return $aux->fetch();
+    }
 }

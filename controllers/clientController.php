@@ -33,11 +33,19 @@ class ClientController
     }
     public function showMain()
     {
+        require_once "models/Category.php";
+        require_once "models/Product.php";
+        $categories = (new Category)->getCategories();
+        $products = (new Product)->getProducts();
         require_once "views/client/menu.php";
     }
 
     public function showMainAdmin()
     {
+        require_once "models/Category.php";
+        require_once "models/Product.php";
+        $categories = (new Category)->getCategories();
+        $products = (new Product)->getProducts();
         require_once "views/admin/menuAdmin.php";
     }
     public function loginAuth()

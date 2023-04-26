@@ -16,10 +16,10 @@
         }
         ?>
     </title>
-    <link rel="stylesheet" href="assets/style/general.css">
     <link rel="icon" href="assets/img/logo.png" />
     <script src="assets/script/main.js" defer></script>
     <script src="assets/script/message.js"></script>
+    <link rel="stylesheet" href="assets/style/general.css">
 </head>
 
 <body>

@@ -10,7 +10,7 @@ if (!isset($_SESSION["usuario"])) {
             <h2 style="text-align: center; margin: 0; margin-bottom: 20px;">Editar perfil</h2>
             <div class="form-div-stile">
                 <label for="foto">Foto de perfil: </label>
-                <img style="border-radius: 30%;" src="../../<?php if (isset($informacion["foto_perfil"]) && $informacion["foto_perfil"] != "" && $informacion["foto_perfil"] != "NULL") {
+                <img style="border-radius: 30%;" src="./<?php if (isset($informacion["foto_perfil"]) && $informacion["foto_perfil"] != "" && $informacion["foto_perfil"] != "NULL" && $informacion["foto_perfil"] != "assets/img/users/") {
                                                                 echo ($informacion["foto_perfil"]);
                                                             } else {
                                                                 echo ("assets/svg/login-user.svg");

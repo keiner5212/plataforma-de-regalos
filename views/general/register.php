@@ -1,12 +1,7 @@
-<?php if (isset($_SESSION["aux"])) {
-    echo ("<script> messageBox('Error al registrar','Seguramente estas intentando registrarte con un correo que ya existe') </script>");
-    unset($_SESSION['aux']);
-}  ?>
-
 <div class="div-center">
     <div class="card login">
         <div class="login-img div-center">
-            <img src="../../assets/svg/login-user.svg" style="border-radius: 50%;">
+            <img src="./assets/svg/login-user.svg" style="border-radius: 50%;">
         </div>
         <div style="display: flex; justify-content: center;">
             <form action="index.php?c=client&a=registerForm" method="post">
@@ -36,3 +31,8 @@
         </div>
     </div>
 </div>
+
+<?php if (isset($_SESSION["aux"])) {
+    echo ("<script> messageBox('Error al registrar','Seguramente estas intentando registrarte con un correo que ya existe') </script>");
+    unset($_SESSION['aux']);
+}  ?>
