@@ -14,7 +14,15 @@
 </aside>
 
 <script>
-    document.getElementById("home").addEventListener("click", () => {
-        window.location.href = 'index.php?log=false&c=client&a=showMain'
-    })
+    <?php if (isset($_SESSION['usuario'])) { ?>
+        document.getElementById("home").addEventListener("click", () => {
+            window.location.href = 'index.php?c=client&a=showMain'
+        })
+        <?php } else {
+        if (isset($_SESSION['admin'])) { ?>
+            document.getElementById("home").addEventListener("click", () => {
+                window.location.href = 'index.php?c=client&a=showMainAdmin&t=Menu%20admin'
+            })
+    <?php }
+    } ?>
 </script>

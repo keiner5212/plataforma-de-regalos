@@ -6,30 +6,66 @@ if (!isset($_SESSION["admin"])) {
 
 <main class="div-center card menu-adjust">
     <div class="tools" style="width: 100%;">
-        <a href="" style="margin-left: 50px;">
-            <div style="background-color: #D9D9D9;border-radius: 30%;width: 45px;height: 45px;">
-                <img style="background-color: #D9D9D9;border-radius: 30%;width: 45px;height: 45px;" src="./assets/svg/categoria.svg" alt="">
-            </div>
-        </a>
-        <a href="" style="margin-right: 50px;">
-            <div class="circle" style="background-color: #D9D9D9;">
-                <img class="circle" src="./assets/svg/plus.svg" alt="">
-            </div>
-        </a>
+        <div style="display: flex;flex-direction: row; align-items: center;">
+            <a href="index.php?c=client&a=addCategory&t=Añadir%20categoria" style="margin-left: 50px;">
+                <div class="circle">
+                    <img src="./assets/svg/categoria.svg" alt="">
+                </div>
+            </a>
+            <p>Añadir categoria</p>
+        </div>
     </div>
 
-    <div style="width: 95%">
-        <?php
-        if (isset($products) && $products != false) {
-            foreach ($products as $key => $product) { ?>
-                <div>
+    <div class="tabla">
 
-                </div>
-            <?php  }
-        } else { ?>
-            <div style="padding: 10px;text-align: center; background-color: pink;border-radius: 10px; width: 100%;">
-                <p>Sin productos que mostrar</p>
-            </div>
-        <?php  } ?>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Imagen</th>
+                    <th>Descripción</th>
+                    <th>Categoria</th>
+                    <th>Propietario</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if ($products) {
+                    foreach ($products as $value) foreach ($value as $v) { ?>
+                        <tr>
+                            <td><p><?php echo ($v["id_articulo"]) ?></p></td>
+                            <td>
+                                <p><?php echo ($v["nombre"]) ?></p>
+                            </td>
+                            <td><img src="./<?php if (isset($v["imagen"]) && $v["imagen"] != "" && $v["imagen"] != "NULL" && $v["imagen"] != "assets/img/users/") {
+                                                echo ($v["imagen"]);
+                                            } else {
+                                                echo ("assets/svg/product.svg");
+                                            } ?>" alt=""></td>
+                            <td>
+                                <p><?php echo ($v["descripcion"]) ?></p>
+                            </td>
+                            <td>
+                                <p><?php echo ($v["categoria"]) ?></p>
+                            </td>
+                            <td>
+                                <p><?php echo ($v["propietario"]) ?></p>
+                            </td>
+                            <td>
+                                <a href="index.php?c=client&a=deleteProduct&p=<?php echo ($v["id_articulo"]) ?>">
+                                    <img class="trash" width="50px" height="50px" src="./assets/svg/basura.svg" alt="">
+                                </a>
+                            </td>
+                        </tr>
+                    <?php  }
+                } else { ?>
+                    <div style="padding: 10px;text-align: center; background-color: pink;border-radius: 10px; width: 50%;">
+                        <p>Sin productos que mostrar</p>
+                    </div>
+                <?php  } ?>
+            </tbody>
+        </table>
     </div>
 </main>

@@ -36,15 +36,21 @@ class ClientController
         require_once "models/Category.php";
         require_once "models/Product.php";
         $categories = (new Category)->getCategories();
-        $products = (new Product)->getProducts();
+        if (isset($_GET["category"])) {
+            $products = (new Product)->filterByCategory($_GET["category"]);
+        } else {
+            if (isset($_GET["search"])) {
+                $products = (new Product)->filterByName($_GET["search"]);
+            } else {
+                $products = (new Product)->getProducts();
+            }
+        }
         require_once "views/client/menu.php";
     }
 
     public function showMainAdmin()
     {
-        require_once "models/Category.php";
         require_once "models/Product.php";
-        $categories = (new Category)->getCategories();
         $products = (new Product)->getProducts();
         require_once "views/admin/menuAdmin.php";
     }
@@ -131,6 +137,8 @@ class ClientController
 
     public function showPerfil()
     {
+        require_once "models/Product.php";
+        $products = (new Product)->getProducts();
         $informacion = (new Client)->getUserInfo($_SESSION["usuario"]);
         require_once "views/client/perfil.php";
     }
@@ -153,6 +161,66 @@ class ClientController
         }
         (new Client)->updateUser($_SESSION["usuario"], $ruta_destino, $_POST["nombre"], $_POST["apellidos"], $_POST["telefono"], $_POST["contrasenha"]);
         header('Location: index.php');
+        exit();
+    }
+
+    public function addCategory()
+    {
+        require_once "views/admin/addCategory.php";
+    }
+
+    public function addCategoryPost()
+    {
+        require_once "models/Category.php";
+        (new Category)->addCategory($_POST["nombre"]);
+        header('Location: index.php?c=client&a=showMainAdmin&t=Menu%20admin');
+        exit();
+    }
+
+    public function addProduct()
+    {
+        require_once "models/Category.php";
+        $categories = (new Category)->getCategories();
+        require_once "views/client/addProduct.php";
+    }
+
+    public function addProductPost()
+    {
+        require_once "models/Product.php";
+        if (isset($_FILES['foto'])) {
+            $nombre_imagen = $_FILES['foto']['name'];
+            $temp_imagen = $_FILES['foto']['tmp_name'];
+            $ruta_destino = "assets/img/users/" . $nombre_imagen;
+            move_uploaded_file($temp_imagen, $ruta_destino);
+        } else {
+            $ruta_destino = "";
+        }
+        (new Product)->addProduct($_POST["nombre"], $ruta_destino, $_POST["desc"], $_POST["category"], $_SESSION["usuario"]);
+        header('Location: index.php?c=client&a=showMain');
+        exit();
+    }
+    public function getProduct()
+    {
+        require_once "models/Category.php";
+        require_once "models/Product.php";
+        $product = (new Product)->searchProductByID($_GET["p"])[0][0];
+        $categories = (new Category)->searchCategoryByID($product["categoria"])[0][0];
+        require_once "views/client/getProduct.php";
+    }
+    public function getProductPost()
+    {
+        require_once "models/Product.php";
+        (new Product)->changeOwner($_SESSION["usuario"], $_GET["p"]);
+        header('Location: index.php?c=client&a=showMain');
+        exit();
+    }
+
+    
+    public function deleteProduct()
+    {
+        require_once "models/Product.php";
+        (new Product)->deleteProduct($_GET["p"]);
+        header('Location: index.php?c=client&a=showMainAdmin&t=Menu%20admin');
         exit();
     }
 }

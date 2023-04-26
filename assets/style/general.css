@@ -160,7 +160,7 @@ form {
     font-size: 20px;
 }
 
-.form-div-stile img {
+.form-div-stile img:not(.product-img) {
     margin: 0;
     height: 34px;
     width: 34px;
@@ -295,6 +295,7 @@ form {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 15px 0px;
 }
 
 .a-button {
@@ -328,23 +329,23 @@ form label {
     justify-content: flex-start;
     margin: 10px;
     padding: 10px;
-    max-height: 100%;
-    overflow: auto;
     flex-direction: column;
 }
 
-.tools{
+.tools {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 10px;
 }
 
-.tools *{
+.tools * {
     align-items: center;
 }
 
-form input, select{
+form input,
+select {
     margin: 0px 5px;
     border-radius: 10px;
     background-color: #D9D9D9;
@@ -352,13 +353,84 @@ form input, select{
     outline: none;
 }
 
-.submit-buttton{
+.submit-buttton {
     background-color: #819DE5;
     color: white;
 }
 
-.circle{
+.circle {
     border-radius: 50%;
     width: 45px;
     height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.circle>img {
+    border-radius: 30%;
+    width: 35px;
+    height: 35px;
+}
+
+.products {
+    display: flex;
+    justify-content: space-around;
+    width: 95%;
+    overflow: auto;
+    max-height: 480px;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 20px;
+    background-color: #A9A9A9;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.product-card img {
+    border-radius: 10%;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+}
+
+.product-card a {
+    background-color: black;
+    color: white;
+}
+
+.product-img{
+    border-radius: 10%;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+}
+
+.perfil{
+    flex-direction: column;
+}
+
+.tabla{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.tabla img:not(.trash) {
+    border-radius: 10%;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+}
+
+.trash{
+    margin: 2px;
+    padding: 0px;
 }
