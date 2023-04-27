@@ -6,7 +6,7 @@ if (!isset($_SESSION["usuario"])) {
 
 <main class="div-center">
     <div class="card profile">
-        <form id="form-edit" action="index.php?c=client&a=addProductPost&p=<?php echo ($product["id_articulo"]) ?>" method="post" enctype="multipart/form-data">
+        <form id="form-edit" action="index.php?c=client&a=editProductPost&p=<?php echo ($product["id_articulo"]) ?>" method="post" enctype="multipart/form-data">
             <h2 style="text-align: center; margin: 0; margin-bottom: 20px;">Añadir producto</h2>
             <div class="form-div-stile">
                 <label>Categoria: </label>
@@ -47,7 +47,7 @@ if (!isset($_SESSION["usuario"])) {
 
 <script>
     function Actualizar() {
-        questionBox('Adquirir', 'Estas seguro de que quieres adquirir el producto?', () => {
+        questionBox('Editar', 'Estas seguro de que quieres editar el producto?', () => {
             document.getElementById("form-edit").submit();
         });
     }

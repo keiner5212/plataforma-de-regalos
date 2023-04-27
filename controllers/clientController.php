@@ -250,7 +250,7 @@ class ClientController
             $ruta_destino = "";
         }
         (new Product)->editProduct($_POST["nombre"], $ruta_destino, $_POST["desc"], $_POST["category"], $_GET["p"]);
-        header('Location: index.php?c=client&a=showMain');
+        header('Location: index.php?c=client&a=showPerfil&t=Perfil');
         exit();
     }
 }
