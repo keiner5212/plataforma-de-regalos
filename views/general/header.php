@@ -23,7 +23,7 @@ if (isset($_SESSION['usuario'])) {
             <img class="menu-icon" id="menu-button" src="./assets/svg/menu.svg" alt="donaciones">
         <?php  } ?>
         <div class="div-right">
-            <img class="menu-icon" src="./assets/img/logo.png" alt="logo">
+            <img src="./assets/img/logo.png" style="height: 60px; width: 60px; margin: 0px;" alt="logo">
             <h2 style="margin: 0px; padding: 0px 10px;">Marketplace Luis Amigó</h2>
         </div>
         <?php if (isset($_SESSION['usuario'])) { ?>

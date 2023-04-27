@@ -17,25 +17,27 @@ if (!isset($_SESSION["admin"])) {
     </div>
 
     <div class="tabla">
-
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Imagen</th>
-                    <th>Descripción</th>
-                    <th>Categoria</th>
-                    <th>Propietario</th>
-                    <th>Eliminar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                if ($products) {
+        <?php
+        if (sizeof($products)) { ?>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Imagen</th>
+                        <th>Descripción</th>
+                        <th>Categoria</th>
+                        <th>Propietario</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
                     foreach ($products as $value) foreach ($value as $v) { ?>
                         <tr>
-                            <td><p><?php echo ($v["id_articulo"]) ?></p></td>
+                            <td>
+                                <p><?php echo ($v["id_articulo"]) ?></p>
+                            </td>
                             <td>
                                 <p><?php echo ($v["nombre"]) ?></p>
                             </td>
@@ -59,13 +61,13 @@ if (!isset($_SESSION["admin"])) {
                                 </a>
                             </td>
                         </tr>
-                    <?php  }
-                } else { ?>
-                    <div style="padding: 10px;text-align: center; background-color: pink;border-radius: 10px; width: 50%;">
-                        <p>Sin productos que mostrar</p>
-                    </div>
-                <?php  } ?>
-            </tbody>
-        </table>
+                    <?php  }  ?>
+                </tbody>
+            </table>
+        <?php  } else { ?>
+            <div style="padding: 10px;text-align: center; background-color: pink;border-radius: 10px; width: 50%;">
+                <p>Sin productos que mostrar</p>
+            </div>
+        <?php  } ?>
     </div>
 </main>

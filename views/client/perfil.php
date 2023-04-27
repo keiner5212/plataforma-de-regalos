@@ -51,7 +51,7 @@ if (!isset($_SESSION["usuario"])) {
                                     } else {
                                         echo ("assets/svg/product.svg");
                                     } ?>" alt="">
-                        <a class="a-button" href="index.php?c=client&a=getProduct&t=Adquirir%20articulo&p=<?php echo ($v["id_articulo"]) ?>">Lo necesito</a>
+                        <a class="a-button" href="index.php?c=client&a=editProduct&t=Adquirir%20articulo&p=<?php echo ($v["id_articulo"]) ?>">Editar</a>
                     </div>
             <?php  }
             }

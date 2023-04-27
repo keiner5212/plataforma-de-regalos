@@ -210,17 +210,47 @@ class ClientController
     public function getProductPost()
     {
         require_once "models/Product.php";
+        $product = (new Product)->searchProductByID($_GET["p"])[0][0];
+        $message = 'El usuario "' . $_SESSION["usuario"] . '" ahora es el propietario del articulo "' . $product["nombre"] . '"';
+        $headers = 'From: marketplaceluisamigo@gmail.com' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+        mail($_POST["email"], 'Uno de tus productos ha sido tomado', $message, $headers);
         (new Product)->changeOwner($_SESSION["usuario"], $_GET["p"]);
         header('Location: index.php?c=client&a=showMain');
         exit();
     }
 
-    
     public function deleteProduct()
     {
         require_once "models/Product.php";
         (new Product)->deleteProduct($_GET["p"]);
         header('Location: index.php?c=client&a=showMainAdmin&t=Menu%20admin');
+        exit();
+    }
+
+
+    public function editProduct()
+    {
+        require_once "models/Category.php";
+        require_once "models/Product.php";
+        $product = (new Product)->searchProductByID($_GET["p"])[0][0];
+        $categories =  (new Category)->getCategories();
+        require_once "views/client/editProduct.php";
+    }
+
+    public function editProductPost()
+    {
+        require_once "models/Product.php";
+        if (isset($_FILES['foto'])) {
+            $nombre_imagen = $_FILES['foto']['name'];
+            $temp_imagen = $_FILES['foto']['tmp_name'];
+            $ruta_destino = "assets/img/users/" . $nombre_imagen;
+            move_uploaded_file($temp_imagen, $ruta_destino);
+        } else {
+            $ruta_destino = "";
+        }
+        (new Product)->editProduct($_POST["nombre"], $ruta_destino, $_POST["desc"], $_POST["category"], $_GET["p"]);
+        header('Location: index.php?c=client&a=showMain');
         exit();
     }
 }

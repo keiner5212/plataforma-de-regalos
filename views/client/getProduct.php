@@ -9,14 +9,14 @@ if (!isset($_SESSION["usuario"])) {
         <form id="form-edit" action="index.php?c=client&a=getProductPost&p=<?php echo ($product["id_articulo"]) ?>" method="post" enctype="multipart/form-data">
             <h2 style="text-align: center; margin: 0; margin-bottom: 20px;">Adquirir articulo</h2>
             <div class="form-div-stile">
-                <label for="foto"><?php echo ($categories["nombre"]) ?></label>
+                <label><?php echo ($product["nombre"]) ?></label>
             </div>
             <div class="form-div-stile" style="display: flex; justify-content: center;height: auto;">
                 <img class="product-img" src="./<?php if (isset($product["imagen"]) && $product["imagen"] != "" && $product["imagen"] != "NULL" && $product["imagen"] != "assets/img/users/") {
-                                echo ($product["imagen"]);
-                            } else {
-                                echo ("assets/svg/product.svg");
-                            } ?>" alt="" >
+                                                    echo ($product["imagen"]);
+                                                } else {
+                                                    echo ("assets/svg/product.svg");
+                                                } ?>" alt="">
             </div>
             <div class="form-div-stile">
                 <label><?php echo ($product["descripcion"]) ?></label>

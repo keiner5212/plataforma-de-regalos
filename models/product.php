@@ -42,6 +42,12 @@ class Product
         $sql = "UPDATE articulos SET propietario='{$email}' WHERE id_articulo = '{$id}'";
         $this->pdo->query($sql);
     }
+    
+    public function editProduct( $nombre, $imagen, $descripcion, $categoria,$id)
+    {
+        $sql = "UPDATE articulos SET nombre='{$nombre}', imagen='{$imagen}', descripcion='{$descripcion}', categoria='{$categoria}' WHERE id_articulo = '{$id}'";
+        $this->pdo->query($sql);
+    }
 
     public function filterByName($name)
     {
