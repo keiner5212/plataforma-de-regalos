@@ -50,15 +50,17 @@ if (!isset($_SESSION["admin"])) {
                                 <p><?php echo ($v["descripcion"]) ?></p>
                             </td>
                             <td>
-                                <p><?php echo ($v["categoria"]) ?></p>
+                                <p><?php
+                                    require_once "models/category.php";
+                                    echo ((new Category)->searchCategoryByID($v["categoria"])[0][0]["nombre"]) ?></p>
                             </td>
                             <td>
                                 <p><?php echo ($v["propietario"]) ?></p>
                             </td>
                             <td>
-                                <a href="index.php?c=client&a=deleteProduct&p=<?php echo ($v["id_articulo"]) ?>">
+                                <button onclick="Actualizar()" style="border-width: 0px">
                                     <img class="trash" width="50px" height="50px" src="./assets/svg/basura.svg" alt="">
-                                </a>
+                                </button>
                             </td>
                         </tr>
                     <?php  }  ?>
@@ -71,3 +73,11 @@ if (!isset($_SESSION["admin"])) {
         <?php  } ?>
     </div>
 </main>
+
+<script>
+    function Actualizar() {
+        questionBox('Eliminar', 'Estas seguro de que quieres eliminar ese producto?', () => {
+            window.location.href = "index.php?c=client&a=deleteProduct&p=<?php echo ($v["id_articulo"]) ?>";
+        });
+    }
+</script>

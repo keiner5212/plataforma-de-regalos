@@ -16,6 +16,7 @@ CREATE TABLE `Articulos` (
 	`descripcion` TEXT NOT NULL,
 	`categoria` INT(10) NOT NULL,
 	`propietario` varchar(100) NOT NULL,
+	`adquirido` BOOLEAN NOT NULL,
 	PRIMARY KEY (`id_articulo`)
 );
 

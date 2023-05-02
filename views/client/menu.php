@@ -32,17 +32,28 @@ if (!isset($_SESSION["usuario"])) {
     <div class="products">
         <?php
         if ($products) {
-            foreach ($products as $value) foreach ($value as $v) { ?>
-                <div class="product-card card">
-                    <p><?php echo ($v["nombre"]) ?></p>
-                    <img src="./<?php if (isset($v["imagen"]) && $v["imagen"] != "" && $v["imagen"] != "NULL" && $v["imagen"] != "assets/img/users/") {
-                                    echo ($v["imagen"]);
-                                } else {
-                                    echo ("assets/svg/product.svg");
-                                } ?>" alt="">
-                    <a class="a-button" href="index.php?c=client&a=getProduct&t=Adquirir%20articulo&p=<?php echo ($v["id_articulo"]) ?>">Lo necesito</a>
-                </div>
+            foreach ($products as $value) foreach ($value as $v) {
+                if (!$v["adquirido"]) { ?>
+                    <div class="product-card card">
+                        <p><?php echo ($v["nombre"]) ?></p>
+                        <img src="./<?php if (isset($v["imagen"]) && $v["imagen"] != "" && $v["imagen"] != "NULL" && $v["imagen"] != "assets/img/users/") {
+                                        echo ($v["imagen"]);
+                                    } else {
+                                        echo ("assets/svg/product.svg");
+                                    } ?>" alt="">
+                        <?php
+                        if ($v["propietario"] == $_SESSION["usuario"]) {
+                        ?>
+                            <a class="a-button">Propietario</a>
+                        <?php
+                        } else {
+                        ?>
+                            <a class="a-button" href="index.php?c=client&a=getProduct&t=Adquirir%20articulo&p=<?php echo ($v["id_articulo"]) ?>">Lo necesito</a> <?php
+                                                                                                                                                                }
+                                                                                                                                                                    ?>
+                    </div>
             <?php  }
+            }
         } else { ?>
             <div style="padding: 10px;text-align: center; background-color: pink;border-radius: 10px; width: 50%;">
                 <p>Sin productos que mostrar</p>

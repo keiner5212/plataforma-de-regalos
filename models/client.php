@@ -45,7 +45,7 @@ class Client
         return false;
     }
 
-    public function changePassword($email,$pw)
+    public function changePassword($email, $pw)
     {
         $sql = "UPDATE usuarios SET contrasenha='{$pw}' WHERE correo = '{$email}'";
         $this->pdo->query($sql);
@@ -70,10 +70,14 @@ class Client
         return false;
     }
 
-    
-    public function updateUser($email,$foto,$nombre,$apellido,$telefono,$contrasenha)
+
+    public function updateUser($email, $foto, $nombre, $apellido, $telefono, $contrasenha)
     {
-        $sql = "UPDATE usuarios SET contrasenha='{$contrasenha}',nombre='{$nombre}',foto_perfil='{$foto}',apellido='{$apellido}',telefono='{$telefono}' WHERE correo = '{$email} '";
+        if ($foto != "x") {
+            $sql = "UPDATE usuarios SET contrasenha='{$contrasenha}',nombre='{$nombre}',foto_perfil='{$foto}',apellido='{$apellido}',telefono='{$telefono}' WHERE correo = '{$email} '";
+        } else {
+            $sql = "UPDATE usuarios SET contrasenha='{$contrasenha}',nombre='{$nombre}',apellido='{$apellido}',telefono='{$telefono}' WHERE correo = '{$email} '";
+        }
         $this->pdo->query($sql);
     }
 }

@@ -22,7 +22,7 @@ class Product
     
     public function addProduct( $nombre, $imagen, $descripcion, $categoria, $propietario)
     {
-        $sql = "INSERT INTO articulos(`nombre`, `imagen`, `descripcion`, `categoria`, `propietario`) VALUES ('{$nombre}','{$imagen}','{$descripcion}','{$categoria}','{$propietario}')";
+        $sql = "INSERT INTO articulos(`nombre`, `imagen`, `descripcion`, `categoria`, `propietario`,`adquirido`) VALUES ('{$nombre}','{$imagen}','{$descripcion}','{$categoria}','{$propietario}',false)";
         $this->pdo->query($sql);
     }
 
@@ -39,13 +39,18 @@ class Product
 
     public function changeOwner($email,$id)
     {
-        $sql = "UPDATE articulos SET propietario='{$email}' WHERE id_articulo = '{$id}'";
+        $sql = "UPDATE articulos SET propietario='{$email}', adquirido=true WHERE id_articulo = '{$id}'";
         $this->pdo->query($sql);
     }
     
     public function editProduct( $nombre, $imagen, $descripcion, $categoria,$id)
     {
-        $sql = "UPDATE articulos SET nombre='{$nombre}', imagen='{$imagen}', descripcion='{$descripcion}', categoria='{$categoria}' WHERE id_articulo = '{$id}'";
+        if ($imagen!="x") {
+            $sql = "UPDATE articulos SET nombre='{$nombre}', imagen='{$imagen}', descripcion='{$descripcion}', categoria='{$categoria}' WHERE id_articulo = '{$id}'";
+        }else{
+            $sql = "UPDATE articulos SET nombre='{$nombre}', descripcion='{$descripcion}', categoria='{$categoria}' WHERE id_articulo = '{$id}'";
+        }
+        
         $this->pdo->query($sql);
     }
 
