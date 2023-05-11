@@ -7,7 +7,7 @@ if (!isset($_SESSION["usuario"])) {
 <main class="div-center">
     <div class="card profile">
         <form id="form-edit" action="index.php?c=client&a=editProductPost&p=<?php echo ($product["id_articulo"]) ?>" method="post" enctype="multipart/form-data">
-            <h2 style="text-align: center; margin: 0; margin-bottom: 20px;">Añadir producto</h2>
+            <h2 style="text-align: center; margin: 0; margin-bottom: 20px;">Editar producto</h2>
             <div class="form-div-stile">
                 <label>Categoria: </label>
                 <select name="category" style="width: 100%; font-size: medium; padding: 7px;" required>

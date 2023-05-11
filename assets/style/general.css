@@ -8,7 +8,7 @@ body {
     margin: 0px;
     padding: 0px;
     font-family: 'Inter', sans-serif;
-    font-style: italic;
+
 }
 
 .menu-button {
@@ -22,7 +22,7 @@ body {
     border-radius: 10px;
     margin: 10px;
     font-family: 'Inter';
-    font-style: italic;
+
     font-weight: 700;
 }
 
@@ -157,7 +157,7 @@ form {
     text-align: center;
     width: 100%;
     font-family: 'Inter';
-    font-style: italic;
+
     font-weight: 700;
     font-size: 20px;
 }
@@ -189,7 +189,7 @@ form {
     width: 300px;
     min-height: 10px;
     max-height: auto;
-    background-color: #ecd7d7;
+    background-color: #819DE5;
     transform: translateX(-50%);
 }
 
@@ -276,7 +276,7 @@ form {
     border: none;
     font-size: 16px;
     font-family: 'Inter', sans-serif;
-    font-style: italic;
+
 }
 
 .options-desc {
@@ -315,7 +315,7 @@ form {
     border-color: rgba(0, 0, 0, 0.11);
     margin: 10px;
     font-family: 'Inter';
-    font-style: italic;
+
     font-weight: 700;
 }
 
@@ -406,18 +406,18 @@ select {
     color: white;
 }
 
-.product-img{
+.product-img {
     border-radius: 10%;
     width: 100px;
     height: 100px;
     margin: 5px;
 }
 
-.perfil{
+.perfil {
     flex-direction: column;
 }
 
-.tabla{
+.tabla {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -432,7 +432,21 @@ select {
     margin: 5px;
 }
 
-.trash{
+.trash {
     margin: 2px;
     padding: 0px;
+}
+
+.products-profile{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.profiletitle{
+    width: 100%;
+    margin: 10px 0px;
+    padding: 0px 10px;
+    text-align: center;
 }

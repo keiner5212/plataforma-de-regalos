@@ -39,26 +39,79 @@ if (!isset($_SESSION["usuario"])) {
         </div>
     </div>
     <h3>Mis articulos</h3>
-    <div class="products">
-        <?php
-        if ($products) {
-            foreach ($products as $value) foreach ($value as $v) {
-                if ($v["propietario"]==$_SESSION["usuario"]) { ?>
-                    <div class="product-card card">
-                        <p><?php echo ($v["nombre"]) ?></p>
-                        <img src="./<?php if (isset($v["imagen"]) && $v["imagen"] != "" && $v["imagen"] != "NULL" && $v["imagen"] != "assets/img/users/") {
-                                        echo ($v["imagen"]);
-                                    } else {
-                                        echo ("assets/svg/product.svg");
-                                    } ?>" alt="">
-                        <a class="a-button" href="index.php?c=client&a=editProduct&t=Adquirir%20articulo&p=<?php echo ($v["id_articulo"]) ?>">Editar</a>
+    <div class="products-profile">
+        <div>
+            <h3 class="profiletitle">Articulos publicados</h3>
+            <div class="products">
+                <?php
+                if (sizeof($donatedProducts) > 0) {
+                    foreach ($donatedProducts as $v) { ?>
+                        <div class="product-card card">
+                            <p><?php echo ($v["nombre"]) ?></p>
+                            <img src="./<?php if (isset($v["imagen"]) && $v["imagen"] != "" && $v["imagen"] != "NULL" && $v["imagen"] != "assets/img/users/") {
+                                            echo ($v["imagen"]);
+                                        } else {
+                                            echo ("assets/svg/product.svg");
+                                        } ?>" alt="">
+                            <a class="a-button" href="index.php?c=client&a=editProduct&t=Editar%20articulo&p=<?php echo ($v["id_articulo"]) ?>">Editar</a>
+                        </div>
+                    <?php
+                    }
+                } else { ?>
+                    <div style="padding: 10px;text-align: center; background-color: pink;border-radius: 10px; width: 50%;">
+                        <p>Sin productos que mostrar</p>
                     </div>
-            <?php  }
-            }
-        } else { ?>
-            <div style="padding: 10px;text-align: center; background-color: pink;border-radius: 10px; width: 50%;">
-                <p>Sin productos que mostrar</p>
+                <?php  } ?>
             </div>
-        <?php  } ?>
+        </div>
+        <div>
+            <h3 class="profiletitle">Articulos adquiridos</h3>
+            <div class="products">
+                <?php
+                if (sizeof($receivedProducts) > 0) {
+                    foreach ($receivedProducts as $v) { ?>
+                        <div class="product-card card">
+                            <p><?php echo ($v["nombre"]) ?></p>
+                            <img src="./<?php if (isset($v["imagen"]) && $v["imagen"] != "" && $v["imagen"] != "NULL" && $v["imagen"] != "assets/img/users/") {
+                                            echo ($v["imagen"]);
+                                        } else {
+                                            echo ("assets/svg/product.svg");
+                                        } ?>" alt="">
+                            <a class="a-button" href="index.php?c=client&a=editProduct&t=Editar%20articulo&p=<?php echo ($v["id_articulo"]) ?>">Editar</a>
+                        </div>
+                    <?php
+                    }
+                } else { ?>
+                    <div style="padding: 10px;text-align: center; background-color: pink;border-radius: 10px; width: 50%;">
+                        <p>Sin productos que mostrar</p>
+                    </div>
+                <?php  } ?>
+            </div>
+        </div>
+
+        <div>
+            <h3 class="profiletitle">Articulos donados</h3>
+            <div class="products">
+                <?php
+                if (sizeof($donatedHistoryProducts) > 0) {
+                    foreach ($donatedHistoryProducts as $v) { ?>
+                        <div class="product-card card">
+                            <p><?php echo ($v["nombre"]) ?></p>
+                            <img src="./<?php if (isset($v["imagen"]) && $v["imagen"] != "" && $v["imagen"] != "NULL" && $v["imagen"] != "assets/img/users/") {
+                                            echo ($v["imagen"]);
+                                        } else {
+                                            echo ("assets/svg/product.svg");
+                                        } ?>" alt="">
+                        </div>
+                    <?php
+                    }
+                } else { ?>
+                    <div style="padding: 10px;text-align: center; background-color: pink;border-radius: 10px; width: 50%;">
+                        <p>Sin productos que mostrar</p>
+                    </div>
+                <?php  } ?>
+            </div>
+
+        </div>
     </div>
 </main>

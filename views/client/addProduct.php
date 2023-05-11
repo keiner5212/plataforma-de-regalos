@@ -10,7 +10,7 @@ if (!isset($_SESSION["usuario"])) {
             <h2 style="text-align: center; margin: 0; margin-bottom: 20px;">Añadir producto</h2>
             <div class="form-div-stile">
                 <label>Categoria: </label>
-                <select name="category" style="width: 100%; font-size: medium; padding: 7px;" required>
+                <select id="category" name="category" style="width: 100%; font-size: medium; padding: 7px;" required>
                     <option value="0" disabled selected>Categoria</option>
                     <?php
                     foreach ($categories as $value) foreach ($value as $v) { ?>
@@ -40,8 +40,13 @@ if (!isset($_SESSION["usuario"])) {
 
 <script>
     function Actualizar() {
-        questionBox('Añadir', 'Estas seguro de que quieres agregar el producto?', () => {
-            document.getElementById("form-edit").submit();
-        });
+        let category = document.getElementById("category");
+        if (category.value !== "0") {
+            questionBox('Añadir', 'Estas seguro de que quieres agregar el producto?', () => {
+                document.getElementById("form-edit").submit();
+            });
+        } else {
+            messageBox("Error", "Debes elegir una categoria");
+        }
     }
 </script>

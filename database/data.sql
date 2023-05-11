@@ -26,6 +26,17 @@ CREATE TABLE `categorias` (
 	PRIMARY KEY (`id_categoria`)
 );
 
+CREATE TABLE `HistorialDonaciones` (
+	`id` INT(10) NOT NULL AUTO_INCREMENT,
+	`id_usuario` varchar(100) NOT NULL,
+	`id_articulo` INT(10) NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
 ALTER TABLE `Articulos` ADD CONSTRAINT `Articulos_fk0` FOREIGN KEY (`categoria`) REFERENCES `categorias`(`id_categoria`);
 
 ALTER TABLE `Articulos` ADD CONSTRAINT `Articulos_fk1` FOREIGN KEY (`propietario`) REFERENCES `Usuarios`(`correo`);
+
+ALTER TABLE `HistorialDonaciones` ADD CONSTRAINT `HistorialDonaciones_fk0` FOREIGN KEY (`id_usuario`) REFERENCES `Usuarios`(`correo`);
+
+ALTER TABLE `HistorialDonaciones` ADD CONSTRAINT `HistorialDonaciones_fk1` FOREIGN KEY (`id_articulo`) REFERENCES `Articulos`(`id_articulo`);

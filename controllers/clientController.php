@@ -137,8 +137,38 @@ class ClientController
 
     public function showPerfil()
     {
+        require_once "models/DonationHistory.php";
         require_once "models/product.php";
         $products = (new Product)->getProducts();
+
+        $donatedProducts = array();
+        $receivedProducts = array();
+
+        if ($products) {
+            foreach ($products as $value) {
+                foreach ($value as $v) {
+                    if ($v["propietario"] == $_SESSION["usuario"]) {
+                        if ($v["adquirido"] == 1) {
+                            $receivedProducts[] = $v;
+                        } else {
+                            $donatedProducts[] = $v;
+                        }
+                    }
+                }
+            }
+        }
+
+        $donated = (new DonationHistory)->getProductHistory($_SESSION["usuario"]);
+        $donatedHistoryProducts = array();
+
+        if ($donated) {
+            foreach ($donated as $value) {
+                foreach ($value as $v) {
+                    $donatedHistoryProducts[] = (new Product)->searchProductByID($v["id_articulo"])[0][0];
+                }
+            }
+        }
+
         $informacion = (new Client)->getUserInfo($_SESSION["usuario"]);
         require_once "views/client/perfil.php";
     }
@@ -211,6 +241,8 @@ class ClientController
     {
         require_once "models/product.php";
         require_once "models/client.php";
+        require_once "models/DonationHistory.php";
+
         $product = (new Product)->searchProductByID($_GET["p"])[0][0];
         $old_prop = (new Client)->getUserInfo($product["propietario"]);
         $new_prop = (new Client)->getUserInfo($_SESSION["usuario"]);
@@ -225,6 +257,7 @@ class ClientController
             'X-Mailer: PHP/' . phpversion();
         mail($new_prop["correo"], 'Has adquirido un articulo', $message, $headers);
 
+        (new DonationHistory)->addProductToHistory($product["id_articulo"], $old_prop["correo"]);
         (new Product)->changeOwner($_SESSION["usuario"], $_GET["p"]);
         header('Location: index.php?c=client&a=showMain');
         exit();

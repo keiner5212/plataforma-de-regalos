@@ -24,15 +24,22 @@ if (!isset($_SESSION["usuario"])) {
         </form>
         <div style="width: 100%; display: flex; justify-content: space-evenly;">
             <a href="index.php?c=client&a=showMain" class="a-button">Cancelar</a>
-            <button onclick="Actualizar()" class="a-button">Aceptar</button>
+            <button id="getbtn" onclick="Actualizar()" class="a-button">Aceptar</button>
         </div>
     </div>
 </main>
 
 <script>
     function Actualizar() {
-        questionBox('Adquirir', 'Estas seguro de que quieres adquirir el producto?', () => {
+        let boton = document.getElementById("getbtn");
+        boton.disabled = true;
+        let res = questionBox('Adquirir', 'Estas seguro de que quieres adquirir el producto?', () => {
             document.getElementById("form-edit").submit();
         });
+        res.then(x => {
+            if (x == -1) {
+                boton.disabled = false;
+            }
+        })
     }
 </script>
