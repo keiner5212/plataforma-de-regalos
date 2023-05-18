@@ -77,7 +77,6 @@ if (!isset($_SESSION["usuario"])) {
                                         } else {
                                             echo ("assets/svg/product.svg");
                                         } ?>" alt="">
-                            <a class="a-button" href="index.php?c=client&a=editProduct&t=Editar%20articulo&p=<?php echo ($v["id_articulo"]) ?>">Editar</a>
                         </div>
                     <?php
                     }

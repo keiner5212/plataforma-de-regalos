@@ -33,7 +33,9 @@ if (!isset($_SESSION["admin"])) {
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($products as $value) foreach ($value as $v) { ?>
+                    foreach ($products as $value) foreach ($value as $v) { 
+                        if ($v["adquirido"]==0) {
+                        ?>
                         <tr>
                             <td>
                                 <p><?php echo ($v["id_articulo"]) ?></p>
@@ -63,7 +65,8 @@ if (!isset($_SESSION["admin"])) {
                                 </button>
                             </td>
                         </tr>
-                    <?php  }  ?>
+                    <?php  
+                        }}  ?>
                 </tbody>
             </table>
         <?php  } else { ?>
